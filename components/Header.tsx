@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 const navLinks = [
   { href: '#home', name: 'Home' },
   { href: '#winners', name: 'Winners' },
-  { href: '#gamelist', name: 'Games' },
   { href: '#gamerates', name: 'Rates' },
+  { href: '#gamelist', name: 'Games' },
   { href: '#faq', name: 'FAQ' },
 ];
 

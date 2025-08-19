@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BeGambleAwareIcon, GamblingTherapyIcon } from '../../constants';
+import { BeGambleAwareIcon, GamblingTherapyIcon } from '../constants';
 
 const ScrollToTopButton: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);

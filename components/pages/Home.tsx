@@ -1,9 +1,7 @@
 import React from 'react';
+import { PhoneIcon, WhatsAppIcon, TelegramIcon } from '../../constants';
 
-const PhoneIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>;
-const WhatsAppIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.651 4.383 1.826 6.265l-1.034 3.777 3.91-1.041zM11.892 8.074c-.136 0-.273.007-.405.021-.132.012-.266.023-.401.037-.621.05-1.161.217-1.606.471-.433.248-.823.573-1.178.963-.369.405-.693.858-.962 1.352-.267.49-.499.985-.688 1.491-.182.49-.31.954-.38 1.383-.072.43-.102.833-.098 1.213.005.38.056.744.152 1.089.096.345.24.694.428 1.034.188.34.422.67.703.98.281.31.596.589.94.832.344.243.71.45 1.09.615.38.165.772.292 1.173.377.401.085.804.132 1.21.134.405.002.803-.039 1.18-.121.377-.082.733-.205 1.066-.369.333-.164.636-.369.902-.612.267-.245.494-.525.679-.834.185-.31.328-.646.426-.999.098-.353.15-.712.152-1.071.002-.36-.04-.71-.123-1.041-.084-.33-.209-.646-.375-.94-.166-.295-.366-.558-.596-.78-.23-.222-.485-.407-.761-.555-.276-.148-.568-.26-.873-.334-.305-.075-.615-.113-.929-.115z"/></svg>;
 const AndroidIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.34 5.34C16.45 4.45 15.25 4 14 4h-4c-1.25 0-2.45.45-3.34 1.34C5.77 6.23 5.32 7.43 5.32 8.68L5 15v2c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2l-.32-6.32c0-1.25-.45-2.45-1.34-3.34zM8 15c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm8 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-4H9V9h6v2z" /></svg>;
-const TelegramIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.57c-.28 1.1-.86 1.32-1.7.82l-4.76-3.51l-2.24 2.15c-.24.24-.45.46-.8.46l.32-4.78z"/></svg>;
 
 const LionIllustration = () => (
     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" style={{ filter: 'drop-shadow(0 10px 15px rgba(245, 76, 22, 0.25))' }}>
@@ -73,13 +71,13 @@ const Home: React.FC = () => {
 
               <div style={{ animationDelay: '1s' }} className="fade-in-up flex justify-center lg:justify-start items-center gap-4 mt-8">
                 <a href="tel:+910000000000" className="bg-white border border-gray-200 text-slate-700 font-semibold py-3 px-5 rounded-lg shadow-sm hover:bg-gray-100/60 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
-                  <PhoneIcon /> Call Us
+                  <PhoneIcon className="w-5 h-5" /> Call Us
                 </a>
                 <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" className="bg-white border border-gray-200 text-slate-700 font-semibold py-3 px-5 rounded-lg shadow-sm hover:bg-gray-100/60 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
-                  <WhatsAppIcon /> WhatsApp
+                  <WhatsAppIcon className="w-5 h-5" /> WhatsApp
                 </a>
                  <a href="https://t.me/samrat777official" target="_blank" rel="noopener noreferrer" className="bg-white border border-gray-200 text-slate-700 font-semibold py-3 px-5 rounded-lg shadow-sm hover:bg-gray-100/60 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
-                  <TelegramIcon /> Telegram
+                  <TelegramIcon className="w-5 h-5" /> Telegram
                 </a>
               </div>
             </div>
