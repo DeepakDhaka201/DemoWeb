@@ -12,6 +12,13 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      server: {
+        allowedHosts: [
+          'kalyan.samrat777.in',
+          'localhost',
+          '127.0.0.1'
+        ]
       }
     };
 });
