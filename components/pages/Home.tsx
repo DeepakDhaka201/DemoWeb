@@ -3,34 +3,7 @@ import { PhoneIcon, WhatsAppIcon, TelegramIcon } from '../../constants';
 
 const AndroidIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.34 5.34C16.45 4.45 15.25 4 14 4h-4c-1.25 0-2.45.45-3.34 1.34C5.77 6.23 5.32 7.43 5.32 8.68L5 15v2c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2l-.32-6.32c0-1.25-.45-2.45-1.34-3.34zM8 15c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm8 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-4H9V9h6v2z" /></svg>;
 
-const LionIllustration = () => (
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto" style={{ filter: 'drop-shadow(0 10px 15px rgba(245, 76, 22, 0.25))' }}>
-        <defs>
-            <linearGradient id="lionManeGradient" x1="50%" y1="0%" x2="50%" y2="100%">
-                <stop offset="0%" stopColor="#ffc94a" />
-                <stop offset="100%" stopColor="#f54c16" />
-            </linearGradient>
-            <linearGradient id="crownGradient" x1="50%" y1="0%" x2="50%" y2="100%">
-                <stop offset="0%" stopColor="#FDE047" />
-                <stop offset="100%" stopColor="#F59E0B" />
-            </linearGradient>
-        </defs>
-        <path fill="url(#lionManeGradient)" d="M100 10 C 20 20, 20 180, 100 190 C 180 180, 180 20, 100 10 Z" />
-        <path fill="url(#lionManeGradient)" d="M100 10 L 110 40 L 140 30 L 130 60 L 160 70 L 140 90 L 170 110 L 140 120 L 150 150 L 120 140 L 100 170 L 80 140 L 50 150 L 60 120 L 30 110 L 60 90 L 40 70 L 70 60 L 60 30 L 90 40 Z" />
-        <path fill="#F9A826" d="M100,155 C70,155 45,130 45,100 C45,70 70,45 100,45 C130,45 155,70 155,100 C155,130 130,155 100,155 Z" />
-        <path fill="#FBC02D" d="M100,140 C78,140 60,122 60,100 C60,78 78,60 100,60 C122,60 140,78 140,100 C140,122 122,140 100,140 Z" />
-        <path fill="#FDD835" d="M100,130 C115,130 125,115 125,100 C125,85 115,70 100,70 C85,70 75,85 75,100 C75,115 85,130 100,130 Z" />
-        <path fill="#5D4037" d="M100 105 L 110 120 L 90 120 Z" />
-        <path d="M100 120 C 95 125, 85 125, 80 120" stroke="#5D4037" strokeWidth="2" fill="none" strokeLinecap="round" />
-        <path d="M100 120 C 105 125, 115 125, 120 120" stroke="#5D4037" strokeWidth="2" fill="none" strokeLinecap="round" />
-        <circle cx="85" cy="90" r="6" fill="#5D4037" />
-        <circle cx="115" cy="90" r="6" fill="#5D4037" />
-        <path fill="url(#crownGradient)" stroke="#E65100" strokeWidth="2" strokeLinejoin="round" d="M70 55 L 80 30 L 100 45 L 120 30 L 130 55 L 70 55 Z" />
-        <circle cx="80" cy="32" r="4" fill="#FFFDE7"/>
-        <circle cx="100" cy="47" r="4" fill="#FFFDE7"/>
-        <circle cx="120" cy="32" r="4" fill="#FFFDE7"/>
-    </svg>
-);
+
 
 
 const Home: React.FC = () => {
@@ -45,47 +18,122 @@ const Home: React.FC = () => {
       }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative z-10 pt-20 pb-16 lg:py-0 lg:min-h-[90vh] lg:flex lg:items-center">
-          <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-12">
+        <div className="relative z-10 pt-8 pb-12 sm:pt-16 sm:pb-20 lg:py-0 lg:min-h-[90vh] lg:flex lg:items-center">
+          <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-8 lg:gap-12">
             
             {/* Left Content */}
             <div className="lg:w-1/2 text-center lg:text-left">
-              <div style={{ animationDelay: '0.2s' }} className="fade-in-up inline-block bg-orange-100/60 border border-orange-200/80 py-2 px-6 rounded-full shadow-sm mb-6 font-semibold text-primary">
-                Welcome To Samrat777
+              <div style={{ animationDelay: '0.2s' }} className="fade-in-up mb-4 sm:mb-6">
+                <div className="inline-flex items-center">
+                  {/* Main Badge */}
+                  <div className="bg-white text-slate-800 font-bold py-3 px-6 sm:px-8 rounded-full shadow-lg border-2 border-slate-200" style={{ boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)' }}>
+                    <div className="flex items-center gap-2">
+                      {/* Crown Icon */}
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="#F76320" viewBox="0 0 24 24">
+                        <path d="M5 16L3 7l5.5 4L12 4l3.5 7L21 7l-2 9H5zm2.7-2h8.6l.9-4.4L14 12l-2-4-2 4-3.2-2.4L7.7 14z"/>
+                      </svg>
+
+                      {/* Text */}
+                      <span className="text-sm sm:text-base tracking-wide">
+                        Welcome to
+                        <span className="ml-1 font-black" style={{ color: '#F76320' }}>SAMRAT777</span>
+                      </span>
+
+                      {/* Sparkle Icon */}
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="#F76320" viewBox="0 0 24 24">
+                        <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              <h1 style={{ animationDelay: '0.4s' }} className="fade-in-up text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 leading-tight">
+
+              <h1 style={{ animationDelay: '0.4s' }} className="fade-in-up text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">
                 Unleash Your <span className="text-gradient">Winning Streak.</span>
               </h1>
-              
-              <p style={{ animationDelay: '0.6s' }} className="fade-in-up max-w-xl mx-auto lg:mx-0 mt-6 text-lg text-slate-600">
+
+              <p style={{ animationDelay: '0.6s' }} className="fade-in-up max-w-xl mx-auto lg:mx-0 mt-4 sm:mt-6 text-base sm:text-lg text-slate-600 px-2 sm:px-0">
                 Experience fair play, instant withdrawals, and non-stop action. Your next big win is just a tap away.
               </p>
 
-              <div id="download" style={{ animationDelay: '0.8s' }} className="fade-in-up mt-10 text-center lg:text-left">
-                <button className="bg-gradient-to-br from-primary to-orange-600 text-slate-900 font-bold text-lg py-4 px-8 rounded-full shadow-lg shadow-orange-500/40 hover:shadow-xl hover:shadow-orange-500/60 transition-all flex items-center gap-3 mx-auto lg:mx-0 transform hover:scale-105">
-                  <AndroidIcon /> Download for Android
-                </button>
-                <p className="text-sm text-slate-500 mt-3">Version 2.1.5 • Requires Android 5.0+</p>
+              <div id="download" style={{ animationDelay: '0.8s' }} className="fade-in-up mt-6 sm:mt-8 lg:mt-10 text-center lg:text-left">
+                {/* Download Section */}
+                <div className="space-y-4">
+                  {/* Main Download Button */}
+                  <div className="relative inline-block">
+                    <button className="group relative overflow-hidden text-white font-bold text-base sm:text-lg py-4 px-8 rounded-2xl shadow-xl transition-all duration-500 transform hover:scale-105 flex items-center gap-3 mx-auto lg:mx-0"
+                      style={{ background: 'linear-gradient(135deg, #F76320, #FF8A50)', boxShadow: '0 20px 40px rgba(247, 99, 32, 0.3)' }}>
+
+                      {/* Animated Background */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-full transition-all duration-700 transform -translate-x-full"></div>
+
+                      {/* Content */}
+                      <div className="relative z-10 flex items-center gap-3">
+                        <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+                          <AndroidIcon />
+                        </div>
+                        <div className="text-left">
+                          <div className="font-black text-lg">Download App</div>
+                          <div className="text-sm opacity-90 font-medium">Get it on Android</div>
+                        </div>
+                      </div>
+
+                      {/* Pulse Effect */}
+                      <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 animate-pulse"></div>
+                    </button>
+                  </div>
+
+                  {/* Simple Features */}
+                  <div className="text-center lg:text-left">
+                    <p className="text-sm text-slate-600 font-medium">
+                      ✨ Free • Secure • Trusted by 10,000+ users
+                    </p>
+                  </div>
+
+                  {/* Version Info */}
+                  <p className="text-xs sm:text-sm text-slate-500">
+                    Version 2.1.5 • Compatible with Android 5.0+
+                  </p>
+                </div>
               </div>
 
-              <div style={{ animationDelay: '1s' }} className="fade-in-up flex justify-center lg:justify-start items-center gap-4 mt-8">
-                <a href="tel:+910000000000" className="bg-white border border-gray-200 text-slate-700 font-semibold py-3 px-5 rounded-lg shadow-sm hover:bg-gray-100/60 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
-                  <PhoneIcon className="w-5 h-5" /> Call Us
-                </a>
-                <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" className="bg-white border border-gray-200 text-slate-700 font-semibold py-3 px-5 rounded-lg shadow-sm hover:bg-gray-100/60 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
-                  <WhatsAppIcon className="w-5 h-5" /> WhatsApp
-                </a>
-                 <a href="https://t.me/samrat777official" target="_blank" rel="noopener noreferrer" className="bg-white border border-gray-200 text-slate-700 font-semibold py-3 px-5 rounded-lg shadow-sm hover:bg-gray-100/60 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
-                  <TelegramIcon className="w-5 h-5" /> Telegram
-                </a>
+              {/* Contact Section */}
+              <div style={{ animationDelay: '1s' }} className="fade-in-up mt-6 sm:mt-8">
+                {/* Mobile Number Display */}
+                <div className="text-center lg:text-left mb-4">
+                  <p className="text-slate-600 text-sm mb-2">Contact us for support:</p>
+                  <a href="tel:+919876543210" className="text-2xl sm:text-3xl font-bold text-primary hover:text-primary-dark transition-colors">
+                    +91 98765 43210
+                  </a>
+                </div>
+
+                {/* Contact Buttons - Mobile: 2x2 Grid, Desktop: Row */}
+                <div className="grid grid-cols-2 sm:flex sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
+                  <a href="tel:+919876543210" className="bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                    <PhoneIcon className="w-4 h-4" />
+                    <span className="text-sm">Call</span>
+                  </a>
+                  <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-green-400 to-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                    <WhatsAppIcon className="w-4 h-4" />
+                    <span className="text-sm">WhatsApp</span>
+                  </a>
+                  <a href="https://t.me/samrat777official" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 col-span-2 sm:col-span-1">
+                    <TelegramIcon className="w-4 h-4" />
+                    <span className="text-sm">Join Telegram</span>
+                  </a>
+                </div>
               </div>
             </div>
 
             {/* Right Image */}
-            <div className="lg:w-1/2 flex justify-center lg:justify-end">
-              <div className="w-full max-w-md lg:max-w-lg animate-float">
-                <LionIllustration />
+            <div className="lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0">
+              <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg animate-float">
+                <img
+                  src="/hero1.png"
+                  alt="Samrat777 Hero"
+                  className="w-full h-auto"
+                  style={{ filter: 'drop-shadow(0 10px 15px rgba(245, 76, 22, 0.25))' }}
+                />
               </div>
             </div>
 

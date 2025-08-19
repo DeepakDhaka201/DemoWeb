@@ -19,17 +19,157 @@ export const WINNERS: Winner[] = [
   { name: 'Himanshu', amount: '₹51,000' },
   { name: 'Garima', amount: '₹25,000' },
   { name: 'Yash', amount: '₹45,200' },
+  { name: 'Rajesh', amount: '₹67,500' },
+  { name: 'Anita', amount: '₹42,800' },
+  { name: 'Vikram', amount: '₹38,900' },
+  { name: 'Sunita', amount: '₹55,300' },
+  { name: 'Amit', amount: '₹29,700' },
+  { name: 'Kavya', amount: '₹73,200' },
+  { name: 'Rohit', amount: '₹41,600' },
+  { name: 'Meera', amount: '₹58,400' },
 ];
 
+// API Configuration
+export const API_BASE_URL = 'https://kalyan.samrat-satta.com';
+export const WEB_BASE_URL = 'https://kalyan.samrat-satta.com';
+
+// API Functions
+export const fetchGameRates = async (): Promise<GameRate[]> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/game_rate`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch game rates');
+    }
+
+    const data = await response.json();
+
+    // Transform API response to match our UI format
+    const rates = data.rates?.THREE_DIGIT || {};
+
+    const gameRates: GameRate[] = [
+      { title: 'Single Digit', rate: `1 RS KA ${Math.round(rates.SINGLE || 9.5)}` },
+      { title: 'Jodi Digit', rate: `1 RS KA ${Math.round(rates.JODI || 95)}` },
+      { title: 'Single Pana', rate: `1 RS KA ${Math.round(rates.SP || 140)}` },
+      { title: 'Double Pana', rate: `1 RS KA ${Math.round(rates.DP || 280)}` },
+      { title: 'Triple Pana', rate: `1 RS KA ${Math.round(rates.TP || 600)}` },
+      { title: 'Half Sangam', rate: `1 RS KA ${Math.round(rates.HALF_SANGAM || 1400)}` },
+      { title: 'Full Sangam', rate: `1 RS KA ${Math.round(rates.FULL_SANGAM || 15000)}` },
+      { title: 'Haruf', rate: `1 RS KA ${Math.round(rates.HARF || 9.5)}` },
+    ];
+
+    return gameRates;
+  } catch (error) {
+    console.error('Error fetching game rates:', error);
+    // Return fallback data if API fails
+    return [
+      { title: 'Single Digit', rate: '1 RS KA 10' },
+      { title: 'Jodi Digit', rate: '1 RS KA 95' },
+      { title: 'Single Pana', rate: '1 RS KA 140' },
+      { title: 'Double Pana', rate: '1 RS KA 280' },
+      { title: 'Triple Pana', rate: '1 RS KA 600' },
+      { title: 'Half Sangam', rate: '1 RS KA 1400' },
+      { title: 'Full Sangam', rate: '1 RS KA 15000' },
+      { title: 'Haruf', rate: '1 RS KA 10' },
+    ];
+  }
+};
+
+// Live Markets API
+export const fetchLiveMarkets = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/get_markets?include_results=true`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch live markets');
+    }
+
+    const data = await response.json();
+
+    if (data.success && data.clubs) {
+      return {
+        success: true,
+        clubs: data.clubs
+      };
+    }
+
+    throw new Error('Invalid API response format');
+  } catch (error) {
+    console.error('Error fetching live markets:', error);
+    return {
+      success: false,
+      error: error.message,
+      clubs: {}
+    };
+  }
+};
+
+// Generate chart URL for a market
+export const getChartUrl = (marketId: number, marketName: string) => {
+  return `${WEB_BASE_URL}/get_charts?market_id=${marketId}&market_name=${encodeURIComponent(marketName)}`;
+};
+
+// Transform market data for UI display
+export const transformMarketForUI = (market: any) => {
+  // Determine status based on betting sessions
+  let status = 'closed';
+  let statusColor = '#ef4444'; // red
+
+  if (market.isOpenSessionOn || market.isCloseSessionOn) {
+    status = 'open';
+    statusColor = '#22c55e'; // green
+  }
+
+  // Format numbers for display
+  let numbers = '***-**-***';
+  if (market.type === 'TWO_DIGIT') {
+    // For TWO_DIGIT: show leftNumber - rightNumber
+    const left = market.leftNumber || '**';
+    const right = market.rightNumber || '**';
+    numbers = `${left} - ${right}`;
+  } else {
+    // For THREE_DIGIT: show leftNumber - midNumber - rightNumber
+    const left = market.leftNumber || '***';
+    const mid = market.midNumber || '**';
+    const right = market.rightNumber || '***';
+    numbers = `${left} - ${mid} - ${right}`;
+  }
+
+  return {
+    id: market.marketId,
+    name: market.name,
+    numbers: numbers,
+    status: status,
+    statusColor: statusColor,
+    openTime: market.bidStartTime,
+    closeTime: market.closeBidEndTime,
+    hasVideo: false, // Can be enhanced later
+    isActive: market.isOpenSessionOn || market.isCloseSessionOn,
+    type: market.type,
+    infoText: market.infoText || 'Betting is closed for today'
+  };
+};
+
+// Keep static data as fallback
 export const GAME_RATES: GameRate[] = [
   { title: 'Single Digit', rate: '1 RS KA 10' },
-  { title: 'Jodi Digit', rate: '1 RS KA 100' },
-  { title: 'Single Pana', rate: '1 RS KA 150' },
-  { title: 'Double Pana', rate: '1 RS KA 300' },
-  { title: 'Triple Pana', rate: '1 RS KA 500' },
-  { title: 'Red Brackets', rate: '1 RS KA 100' },
-  { title: 'Half Sangam Digits', rate: '1 RS KA 1000' },
-  { title: 'Full Sangam Digits', rate: '1 RS KA 10000' },
+  { title: 'Jodi Digit', rate: '1 RS KA 95' },
+  { title: 'Single Pana', rate: '1 RS KA 140' },
+  { title: 'Double Pana', rate: '1 RS KA 280' },
+  { title: 'Triple Pana', rate: '1 RS KA 600' },
+  { title: 'Half Sangam', rate: '1 RS KA 1400' },
+  { title: 'Full Sangam', rate: '1 RS KA 15000' },
+  { title: 'Haruf', rate: '1 RS KA 10' },
 ];
 
 export const AVAILABLE_GAMES: Game[] = [

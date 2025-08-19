@@ -59,6 +59,15 @@
         animation: fadeInUp 0.8s ease-out forwards;
         opacity: 0; /* Start hidden */
       }
+
+      /* Hide scrollbar for slider */
+      .scrollbar-hide {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+      }
     </style>
   <script type="importmap">
 {

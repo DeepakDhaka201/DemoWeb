@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 
 const navLinks = [
   { href: '#home', name: 'Home' },
-  { href: '#winners', name: 'Winners' },
   { href: '#gamerates', name: 'Rates' },
-  { href: '#gamelist', name: 'Games' },
+  { href: '#services', name: 'Games' },
   { href: '#faq', name: 'FAQ' },
 ];
 
@@ -16,11 +15,13 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3">
-            <div className="bg-primary rounded-full p-1 w-10 h-10 flex items-center justify-center shadow-md shadow-orange-500/30">
-              <span className="font-bold text-2xl text-white">S</span>
-            </div>
-            <span className="font-bold text-xl tracking-wider text-slate-800">Samrat777</span>
+          <a href="#home" className="flex items-center">
+            <img
+              src="/logo-new.png"
+              alt="Samrat777 Logo"
+              className="w-auto"
+              style={{ height: '176px' }}
+            />
           </a>
 
           {/* Desktop Navigation */}

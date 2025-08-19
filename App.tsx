@@ -35,15 +35,15 @@ const App: React.FC = () => {
         <section id="home">
           <Home />
         </section>
-        <section id="winners">
+        {/* <section id="winners">
           <Winners />
-        </section>
+        </section> */}
         <section id="gamerates">
           <GameRates />
         </section>
-        <section id="gamelist">
+        {/* <section id="gamelist">
           <GameListings />
-        </section>
+        </section> */}
         <section id="faq">
           <Faq />
         </section>
