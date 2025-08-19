@@ -35,12 +35,12 @@ const RateCard: React.FC<{ rate: GameRate }> = ({ rate }) => {
     const icon = rateIcons[rate.title] || <SingleDigitIcon />;
 
     return (
-        <div className="group bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-primary/50 hover:shadow-md transition-all duration-300">
-            <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3 text-primary mx-auto group-hover:bg-primary group-hover:text-white transition-all duration-300">
+        <div className="group bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-primary/50 hover:shadow-md transition-all duration-300">
+            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mb-2 text-primary mx-auto group-hover:bg-primary group-hover:text-white transition-all duration-300">
                 {icon}
             </div>
-            <h3 className="text-sm font-semibold text-slate-800 mb-2">{rate.title}</h3>
-            <p className="text-lg font-bold text-primary">{rate.rate}</p>
+            <h3 className="text-xs font-semibold text-slate-800 mb-1">{rate.title}</h3>
+            <p className="text-base font-bold text-primary">{rate.rate}</p>
         </div>
     );
 };
@@ -203,93 +203,48 @@ const LiveMarkets: React.FC = () => {
     const transformedMarket = transformMarketForUI(market);
 
     return (
-      <div key={transformedMarket.id} className="group relative bg-white border border-gray-200/80 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-gray-100/30"></div>
-
-        {/* Status Indicator Bar */}
-        <div
-          className="absolute top-0 left-0 right-0 h-1"
-          style={{ backgroundColor: transformedMarket.statusColor }}
-        ></div>
-
-        <div className="relative p-5">
-          {/* Header */}
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex-1">
-              <h3 className="font-bold text-slate-800 text-sm leading-tight mb-1">
-                {transformedMarket.name}
-              </h3>
-              <div className="text-xs text-slate-500">
-                {transformedMarket.type === 'TWO_DIGIT' ? '2 Digit' : '3 Digit'}
-              </div>
-            </div>
-            <div className="flex flex-col items-end">
-              <span
-                className="px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm"
-                style={{ backgroundColor: transformedMarket.statusColor }}
-              >
-                {transformedMarket.status === 'open' ? '● LIVE' : '○ CLOSED'}
-              </span>
-            </div>
+      <div key={transformedMarket.id} className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md p-3 transition-all duration-300 hover:border-primary/30">
+        {/* Header with Status */}
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex-1">
+            <h3 className="font-bold text-slate-800 text-sm mb-1">{transformedMarket.name}</h3>
+            <div className="text-xs text-slate-500">{transformedMarket.openTime} - {transformedMarket.closeTime}</div>
           </div>
-
-          {/* Numbers Display */}
-          <div className="text-center mb-4">
-            <div className="bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl p-4 border border-gray-100">
-              <div className="text-3xl font-black text-primary mb-2 tracking-wider font-mono">
-                {transformedMarket.numbers}
-              </div>
-              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide">
-                {transformedMarket.numbers === '***-**-***' || transformedMarket.numbers.includes('**') ? 'Result Pending' : 'Latest Result'}
-              </div>
-            </div>
-          </div>
-
-          {/* Timing Info */}
-          <div className="bg-slate-50/50 rounded-lg p-3 mb-3">
-            <div className="flex items-center justify-center gap-2 text-xs text-slate-600">
-              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-              </svg>
-              <span className="font-medium">
-                {transformedMarket.openTime} - {transformedMarket.closeTime}
-              </span>
-            </div>
-          </div>
-
-          {/* Status Message */}
-          <div className="text-center mb-4">
-            <div className={`text-xs font-medium px-3 py-2 rounded-lg ${
-              transformedMarket.status === 'open'
-                ? 'bg-green-50 text-green-700 border border-green-200'
-                : 'bg-gray-50 text-gray-600 border border-gray-200'
-            }`}>
-              {transformedMarket.infoText}
-            </div>
-          </div>
-
-          {/* View Chart Button */}
-          <div className="text-center">
-            <button
-              onClick={() => {
-                const chartUrl = getChartUrl(transformedMarket.id, transformedMarket.name);
-                console.log('Opening chart URL:', chartUrl);
-                window.open(chartUrl, '_blank', 'noopener,noreferrer');
-              }}
-              className="w-full text-white font-semibold py-2.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 text-sm hover:brightness-110"
-              style={{ background: 'linear-gradient(135deg, #F76320, #FF8A50)' }}
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-              View Chart
-            </button>
+          <div className={`px-2 py-1 rounded-full text-xs font-medium ${
+            transformedMarket.status === 'open'
+              ? 'bg-green-100 text-green-700'
+              : 'bg-gray-100 text-gray-600'
+          }`}>
+            {transformedMarket.status === 'open' ? '🟢 Live' : '🔴 Closed'}
           </div>
         </div>
 
-        {/* Hover Effect Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        {/* Numbers Display */}
+        <div className="bg-slate-50 rounded-lg p-3 mb-3 text-center">
+          <div className="text-xl font-black text-primary font-mono tracking-wide">
+            {transformedMarket.numbers}
+          </div>
+          <div className="text-xs text-slate-500 mt-1">
+            {transformedMarket.numbers === '***-**-***' || transformedMarket.numbers.includes('**') ? 'Pending' : 'Result'}
+          </div>
+        </div>
+
+        {/* View Chart Button */}
+        <div className="text-center">
+          <button
+            onClick={() => {
+              const chartUrl = getChartUrl(transformedMarket.id, transformedMarket.name);
+              window.open(chartUrl, '_blank', 'noopener,noreferrer');
+            }}
+            className="w-full text-white font-medium py-2 px-4 rounded-lg text-xs transition-all duration-300 hover:shadow-md flex items-center justify-center gap-2"
+            style={{ background: 'linear-gradient(135deg, #F76320, #FF8A50)' }}
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+            View Chart
+          </button>
+        </div>
       </div>
     );
   };
