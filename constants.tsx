@@ -119,6 +119,26 @@ export const getChartUrl = (marketId: number, marketName: string) => {
   return `${WEB_BASE_URL}/get_charts?market_id=${marketId}&market_name=${encodeURIComponent(marketName)}`;
 };
 
+// Fetch app configuration (APK link, version, contact details)
+export const fetchAppConfig = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/get_config`);
+    const data = await response.json();
+    return {
+      success: data.success === "1",
+      version: data.latest_version,
+      downloadLink: data.update_link,
+      updateLog: data.update_log,
+      phoneNumber: data.phone_number,
+      whatsappLink: data.whatsapp_link,
+      telegramLink: data.telegram_link
+    };
+  } catch (error) {
+    console.error('Error fetching app config:', error);
+    throw error;
+  }
+};
+
 // Transform market data for UI display
 export const transformMarketForUI = (market: any) => {
   // Determine status based on betting sessions

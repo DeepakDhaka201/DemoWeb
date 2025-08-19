@@ -1,5 +1,5 @@
-import React from 'react';
-import { PhoneIcon, WhatsAppIcon, TelegramIcon } from '../../constants';
+import React, { useState, useEffect } from 'react';
+import { PhoneIcon, WhatsAppIcon, TelegramIcon, fetchAppConfig } from '../../constants';
 
 const AndroidIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.34 5.34C16.45 4.45 15.25 4 14 4h-4c-1.25 0-2.45.45-3.34 1.34C5.77 6.23 5.32 7.43 5.32 8.68L5 15v2c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2l-.32-6.32c0-1.25-.45-2.45-1.34-3.34zM8 15c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm8 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-4H9V9h6v2z" /></svg>;
 
@@ -7,6 +7,37 @@ const AndroidIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" hei
 
 
 const Home: React.FC = () => {
+  const [appConfig, setAppConfig] = useState({
+    phoneNumber: "+919649617995",
+    whatsappLink: "https://wa.me/919649617995",
+    telegramLink: "https://t.me/samrat777official",
+    downloadLink: "/download/samrat.apk",
+    version: "2.1.5"
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadAppConfig = async () => {
+      try {
+        const config = await fetchAppConfig();
+        setAppConfig({
+          phoneNumber: config.phoneNumber,
+          whatsappLink: config.whatsappLink,
+          telegramLink: config.telegramLink,
+          downloadLink: config.downloadLink,
+          version: config.version
+        });
+      } catch (error) {
+        console.error('Failed to load app config:', error);
+        // Keep default values
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAppConfig();
+  }, []);
+
   return (
     <div 
       className="relative overflow-hidden bg-white text-slate-800"
@@ -61,7 +92,7 @@ const Home: React.FC = () => {
                 <div className="space-y-4">
                   {/* Main Download Button */}
                   <div className="relative inline-block">
-                    <button className="group relative overflow-hidden text-white font-bold text-base sm:text-lg py-4 px-8 rounded-2xl shadow-xl transition-all duration-500 transform hover:scale-105 flex items-center gap-3 mx-auto lg:mx-0"
+                    <a href={appConfig.downloadLink} download className="group relative overflow-hidden text-white font-bold text-base sm:text-lg py-4 px-8 rounded-2xl shadow-xl transition-all duration-500 transform hover:scale-105 flex items-center gap-3 mx-auto lg:mx-0 no-underline"
                       style={{ background: 'linear-gradient(135deg, #F76320, #FF8A50)', boxShadow: '0 20px 40px rgba(247, 99, 32, 0.3)' }}>
 
                       {/* Animated Background */}
@@ -80,7 +111,7 @@ const Home: React.FC = () => {
 
                       {/* Pulse Effect */}
                       <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 animate-pulse"></div>
-                    </button>
+                    </a>
                   </div>
 
                   {/* Simple Features */}
@@ -92,7 +123,7 @@ const Home: React.FC = () => {
 
                   {/* Version Info */}
                   <p className="text-xs sm:text-sm text-slate-500">
-                    Version 2.1.5 • Compatible with Android 5.0+
+                    Version {appConfig.version} • Compatible with Android 5.0+
                   </p>
                 </div>
               </div>
@@ -102,22 +133,22 @@ const Home: React.FC = () => {
                 {/* Mobile Number Display */}
                 <div className="text-center lg:text-left mb-4">
                   <p className="text-slate-600 text-sm mb-2">Contact us for support:</p>
-                  <a href="tel:+919876543210" className="text-2xl sm:text-3xl font-bold text-primary hover:text-primary-dark transition-colors">
-                    +91 98765 43210
+                  <a href={`tel:${appConfig.phoneNumber}`} className="text-2xl sm:text-3xl font-bold text-primary hover:text-primary-dark transition-colors">
+                    {appConfig.phoneNumber}
                   </a>
                 </div>
 
                 {/* Contact Buttons - Mobile: 2x2 Grid, Desktop: Row */}
                 <div className="grid grid-cols-2 sm:flex sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
-                  <a href="tel:+919876543210" className="bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                  <a href={`tel:${appConfig.phoneNumber}`} className="bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
                     <PhoneIcon className="w-4 h-4" />
                     <span className="text-sm">Call</span>
                   </a>
-                  <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-green-400 to-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                  <a href={appConfig.whatsappLink} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-green-400 to-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
                     <WhatsAppIcon className="w-4 h-4" />
                     <span className="text-sm">WhatsApp</span>
                   </a>
-                  <a href="https://t.me/samrat777official" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 col-span-2 sm:col-span-1">
+                  <a href={appConfig.telegramLink} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5 col-span-2 sm:col-span-1">
                     <TelegramIcon className="w-4 h-4" />
                     <span className="text-sm">Join Telegram</span>
                   </a>
