@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
         }
       },
       server: {
+        port: 5174,
         allowedHosts: [
           'kalyan.samrat777.in',
           'localhost',
