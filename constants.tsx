@@ -33,6 +33,10 @@ export const WINNERS: Winner[] = [
 export const API_BASE_URL = 'https://kalyan.samrat-satta.com';
 export const WEB_BASE_URL = 'https://kalyan.samrat-satta.com';
 
+// Specific URLs for config and download
+export const CONFIG_API_BASE_URL = 'https://samrat-satta.com';
+export const DOWNLOAD_BASE_URL = 'https://samrat-satta.com';
+
 // API Functions
 export const fetchGameRates = async (): Promise<GameRate[]> => {
   try {
@@ -122,7 +126,7 @@ export const getChartUrl = (marketId: number, marketName: string) => {
 // Fetch app configuration (APK link, version, contact details)
 export const fetchAppConfig = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/get_config`);
+    const response = await fetch(`${CONFIG_API_BASE_URL}/get_config`);
     const data = await response.json();
     return {
       success: data.success === "1",
