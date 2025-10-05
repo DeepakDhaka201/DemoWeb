@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
         allowedHosts: [
           'kalyan.samrat777.in',
           'samrat777.in',
+          'www.samrat777.in',
           'localhost',
           '127.0.0.1'
         ]
